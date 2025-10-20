@@ -9,12 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+TODO at later date
 
 ## How to test
 
-Explain how to use your project
+TODO at later date
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+Input switch for clock speed setting is needed, 7-seg display for visual is needed
