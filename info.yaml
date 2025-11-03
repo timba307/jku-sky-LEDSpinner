@@ -33,14 +33,14 @@ pinout:
   ui[7]: ""
 
   # Outputs
-  uo[0]: "seg_0"
-  uo[1]: "seg_1"
-  uo[2]: "seg_2"
-  uo[3]: "seg_3"
-  uo[4]: "seg_4"
-  uo[5]: "seg_5"
-  uo[6]: "seg_6"
-  uo[7]: "seg_7"
+  uo[0]: "seg_top"
+  uo[1]: "seg_top_right"
+  uo[2]: "seg_bot_right"
+  uo[3]: "seg_bot"
+  uo[4]: "seg_bot_left"
+  uo[5]: "seg_top_left"
+  uo[6]: "seg_middle"
+  uo[7]: "seg_dp"
 
   # Bidirectional pins
   uio[0]: ""
