@@ -10,33 +10,31 @@ Tiny Tapeout is an educational project that aims to make it easier and cheaper t
 
 To learn more and get started, visit https://tinytapeout.com.
 
-## Set up your Verilog project
+# LED Spinner TinyTapeout Project
+**Module:** `tt_um_timba307_LEDSpinner`
 
-1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
-3. Edit [docs/info.md](docs/info.md) and add a description of your project.
-4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
+Play Roulette using a 7-segment display hooked up to the chip. Using the TinyTapeout Demo Board, the built-in 7-segment can be used directly.
 
-The GitHub action will automatically build the ASIC files using [LibreLane](https://www.zerotoasiccourse.com/terminology/librelane/).
+## Features
+- Five different Roulette speeds
+- Guess on which segment the wheel will stop
+- Display point lights up as win confirmation
+- Pseudo-random number generator randomizes stopping position
 
-## Enable GitHub actions to build the results page
+## Top-Level I/O
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
-
-## Resources
-
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://www.tinytapeout.com/guides/local-hardening/)
-
-## What next?
-
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
-  - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
+| Signal         | Dir | W | Purpose |
+|---|---:|---:|---|
+| `ui_in[3:0]`   | in  | 4 | Set speed, only `4b0000`, `4b0001`, `4b0011`, `4b0111`, `4b1111` are allowed for 1 Hz, 2 Hz, 4 Hz, 8 Hz and 16 Hz respectively. Invalid config triggers 1 kHz speed for testing purposes. |
+| `ui_in[7]`  | in | 1 | Stop the wheel |
+| `uio_in[0]`    | in  | 1 | Guess top segment |
+| `uio_in[1]`    | in  | 1 | Guess top right segment |
+| `uio_in[2]`    | in  | 1 | Guess bottom right segment |
+| `uio_in[3]`    | in  | 1 | Guess bottom segment |
+| `uio_in[4]`    | in  | 1 | Guess bottom left segment |
+| `uio_in[5]`    | in  | 1 | Guess top left segment |
+| `uo_out[6:0]`  | out  | 7 | 7-segment outer ring |
+| `uo_out[7]`   | out | 1 | 7-segment display point |
+| `clk`          | in  | 1 | System clock |
+| `rst_n`        | in  | 1 | Async reset (active-low) |
+| `ena`          | in  | 1 | Always `1` on TinyTapeout |
